@@ -37,6 +37,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     WifiInfo connection;
     String wifiDtls;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +50,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onClick(View v) {
                 wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
                 connection = wifiManager.getConnectionInfo();
-                wifiDtls += connection.get(0).getLocality()+"SSID: "+connection.getSSID();
+                wifiDtls += "SSID: "+connection.getSSID();
                         // "RSSi: "+connection.getRssi();
                                 //+ "\n"+"MAC Address: "
                         //+connection.getMacAddress()
@@ -59,7 +60,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 System.out.println("RSSi: "+connection.getRssi());
                 System.out.println("MAC Address: "+connection.getMacAddress());
                 System.out.println("IP Address: " + connection.getIpAddress());
-                System.out.println();
+                System.out.println(connection.getNetworkId());
             }
         });
 
@@ -84,6 +85,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, new LocationListener() {
                 @Override
                 public void onLocationChanged(Location location) {
+
                     //get latitude
                     double latitude = location.getLatitude();
                     //get longitude
